@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.21
+    container_name: mosquitto
+    environment:
+      - TZ=Europe/Madrid    
+    volumes:
+      - ./shared-assets/config:/mosquitto/config
+      - ./shared-assets/data:/mosquitto/data
+      - ./shared-assets/log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001
+  mqttx-web:
+    image: emqx/mqttx-web
+    container_name: mqttx-web
+    ports:
+      - 8080:80   
